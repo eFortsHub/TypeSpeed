@@ -1,0 +1,46 @@
+level 15
+    in each level: 3 item
+        in each item: 15 different content
+            in each content: 300 random word. 
+
+for normal visitor: 30 content
+        pronoun 2-5
+        verbs 3-8
+        word 3-6
+
+
+structure: pronoun + verb + word + pronoun + word + verb + word + verb * 50
+
+level 1:
+    item 1:
+        pronoun limit 2-3
+        verbs limit 3-3
+        word limit 3-4
+
+    item 2:
+        pronoun 2-3
+        verbs 3-4
+        word 3-4
+    
+    item 3:
+        pronoun 2-4
+        verbs 3-4
+        word 3-4
+
+level 2:
+    item 1:
+        pronoun limit 2-4
+        verbs limit 3-4
+        word limit 3-5
+
+    item 2:
+        pronoun 2-3
+        verbs 3-4
+        word 4-5
+    
+    item 3:
+        pronoun 2-5
+        verbs 3-5
+        word 3-5
+
+
