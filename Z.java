@@ -22,9 +22,9 @@ public class Z {
 
             int previous = 0;
             int index = 0;
-            for (int i = 300; i < arr.length; i += 300) {
+            for (int i = 50; i < arr.length; i += 50) {
                 String sentense = "{\"value\":\"";
-                for (int j = previous; j < i; j++) {
+                for (int j = previous; j < i+300; j++) {
                     String st = arr[j];
 
                     sentense += st+" ";
