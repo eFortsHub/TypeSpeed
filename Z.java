@@ -1,48 +1,57 @@
-public class Z {
-    public static void main(String a[]){
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
-        Account s = new Account("1");
-        Account t = new Account("4");
-        
+public class Z {
+    public static void main(String a[]) {
+
+        File file = new File("./sentence");
+        Scanner sc;
+        String str = "";
         try {
-            transfer(s, t);
-        } catch (InterruptedException e) {
+            sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String s = sc.nextLine();
+                str += s;
+            }
+
+            String[] arr = str.split(" ");
+
+            int previous = 0;
+            int index = 0;
+            for (int i = 300; i < arr.length; i += 300) {
+                String sentense = "{\"value\":\"";
+                for (int j = previous; j < i; j++) {
+                    String st = arr[j];
+
+                    sentense += st+" ";
+
+                    System.out.println(st);
+                }
+
+                sentense+="\"}";
+
+                File f = new File(index+".json");
+
+                if (!f.exists())
+                    f.createNewFile();
+
+                BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+                bw.write(sentense.toLowerCase());
+                bw.flush();
+                bw.close();
+
+                previous = i;
+                index++;
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-
-    }
-    public static void transfer(Account source, Account target) throws InterruptedException {
-        Account firstLock = target.id.compareTo(source.id)  > 0 ? target : source;
-        Account secondLock = target.id.compareTo(source.id)  < 0 ? target : source;
-
-        double sourceBalance = 0;
-        double targetBalance = 0;
-
-        synchronized (firstLock) {
-            synchronized (secondLock) {
-                while(sourceBalance <= 4 ) {
-                    source.wait(1000);
-                    System.out.println("waiting... ");
-                    sourceBalance = sourceBalance+1; //get source balance from somewhere else realtime. for me im just updating
-                }
-                
-                // Money tranfer logic
-                targetBalance = 0; //get target balance from server or where you stored;
-                targetBalance +=sourceBalance; 
-                //send target balance where you want
-                System.out.println("Money transferred");
-                
-                source.notifyAll();
-            }   
-        }
     }
 
-    
-}
-class Account {
-    String id;
-    public Account(String id){
-        this.id = id;
-    }
 }
